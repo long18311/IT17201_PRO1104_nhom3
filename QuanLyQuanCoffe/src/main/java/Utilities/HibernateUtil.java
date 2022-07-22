@@ -5,10 +5,12 @@
  */
 package Utilities;
 
+import Models.*;
+import java.util.Properties;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 /**
@@ -17,32 +19,37 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateUtil {
 
-  private static final SessionFactory __sessionFactory = buildSessionFactory();
+  private static final SessionFactory FACTORY;
 
-  // Hibernate 5:
-  private static SessionFactory buildSessionFactory() {
-      try {
-          // Tạo đối tượng ServiceRegistry từ hibernate.cfg.xml
-          ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                .configure("META-INF/hibernate.cfg.xml").build();
+    static {
+        Configuration conf = new Configuration();
 
-          // Tạo nguồn siêu dữ liệu (metadata) từ ServiceRegistry
-          Metadata metadata = new MetadataSources(serviceRegistry)
-                .getMetadataBuilder().build();
+        Properties properties = new Properties();
+        properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
+        properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=Nhom3a");
+        properties.put(Environment.USER, "sa");
+        properties.put(Environment.PASS, "12345678");
+        properties.put(Environment.SHOW_SQL, "true");
 
-          return metadata.getSessionFactoryBuilder().build();
-      } catch (Throwable ex) {
-          System.err.println("Initial SessionFactory creation failed." + ex);
-          throw new ExceptionInInitializerError(ex);
-      }
-  }
+        conf.setProperties(properties);
+        conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(SanPham.class);
+        conf.addAnnotatedClass(KhachHang.class);
+        conf.addAnnotatedClass(HoaDon.class);
+        conf.addAnnotatedClass(HoaDonCT.class);
 
-  public static SessionFactory getSessionFactory() {
-      return __sessionFactory;
-  }
+        ServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .applySettings(conf.getProperties()).build();
+        FACTORY = conf.buildSessionFactory(registry);
 
-  public static void shutdown() {
-      // Giải phóng cache và Connection Pools.
-      getSessionFactory().close();
-  }
+    }
+
+    public static SessionFactory getFACTORY() {
+        return FACTORY;
+    }
+
+    public static void main(String[] args) {
+        getFACTORY();
+    }
 }

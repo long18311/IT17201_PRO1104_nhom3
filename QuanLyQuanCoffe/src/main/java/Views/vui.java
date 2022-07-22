@@ -1,18 +1,16 @@
 package Views;
 
-import Services.IManageKhoaHocService;
-import Services.ManageKhoaHocService;
-import ViewModels.QLKhoaHoc;
-
+import Models.NhanVien;
 import java.util.List;
+import Repositories.NhanVienRepository;
 
 public class vui {
-    static IManageKhoaHocService khoaHocService = new ManageKhoaHocService();
+    static NhanVienRepository NV = new NhanVienRepository();
     public static void main(String[] args) {
-        List<QLKhoaHoc> khoaHocs = khoaHocService.getKhoaHocs();
+        List<NhanVien> NVs = NV.getList();
         System.out.println("vui");
-        for (QLKhoaHoc kh : khoaHocs) {
-            System.out.println(kh.getMaKH());
+        for (NhanVien nv : NVs) {
+            System.out.println(nv.getId());
         }
     }
 }
