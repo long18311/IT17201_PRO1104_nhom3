@@ -22,7 +22,7 @@ public class NhanVien implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_ND")
+    @Column(name = "Id_NV")
     private long Id;
     
     @Column(name = "UserName")
@@ -31,8 +31,8 @@ public class NhanVien implements Serializable {
     @Column(name = "MatKhau")
     private String MatKhau;
     
-    @Column(name = "Ten_ND")
-    private String Ten_ND;
+    @Column(name = "Ten_NV")
+    private String Ten_NV;
     
     @Column(name = "NgaySinh")
     private int NgaySinh;
@@ -53,11 +53,19 @@ public class NhanVien implements Serializable {
         return Id;
     }
 
-    public NhanVien(long Id, String UserName, String MatKhau, String Ten_ND, int NgaySinh, String SDT, String Email, String ChucVu) {
+    public String getTen_NV() {
+        return Ten_NV;
+    }
+
+    public void setTen_NV(String ten_NV) {
+        Ten_NV = ten_NV;
+    }
+
+    public NhanVien(long Id, String UserName, String MatKhau, String Ten_NV, int NgaySinh, String SDT, String Email, String ChucVu) {
         this.Id = Id;
         this.UserName = UserName;
         this.MatKhau = MatKhau;
-        this.Ten_ND = Ten_ND;
+        this.Ten_NV = Ten_NV;
         this.NgaySinh = NgaySinh;
         this.SDT = SDT;
         this.Email = Email;
@@ -84,13 +92,7 @@ public class NhanVien implements Serializable {
         this.MatKhau = MatKhau;
     }
 
-    public String getTen_ND() {
-        return Ten_ND;
-    }
 
-    public void setTen_ND(String Ten_ND) {
-        this.Ten_ND = Ten_ND;
-    }
 
     public int getNgaySinh() {
         return NgaySinh;
