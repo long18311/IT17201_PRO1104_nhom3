@@ -4,19 +4,15 @@
  */
 package Models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  *
  * @author vanlo
  */
 @Entity
-@Table(name = "sanpham")
+@Table(name = "Sanpham")
 public class SanPham{
 
     @Id
@@ -34,6 +30,78 @@ public class SanPham{
     @Column(name = "Anh")
     private String Anh;
 
+    public List<HoaDonCT> getHoadonCT() {
+        return hoadonCT;
+    }
+
+    public void setHoadonCT(List<HoaDonCT> hoadonCT) {
+        this.hoadonCT = hoadonCT;
+    }
+
+    @OneToMany
+    @JoinTable(name = "sanpham")
+    private List<HoaDonCT> hoadonCT;
+
+    public SanPham() {
+        
+    }
+    public SanPham(long id, String Ten, int GiaBan, String MoTa, int SoLuong, String Anh) {
+        this.id = id;
+        this.Ten = Ten;
+        this.GiaBan = GiaBan;
+        this.MoTa = MoTa;
+        this.SoLuong = SoLuong;
+        this.Anh = Anh;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTen() {
+        return Ten;
+    }
+
+    public void setTen(String Ten) {
+        this.Ten = Ten;
+    }
+
+    public int getGiaBan() {
+        return GiaBan;
+    }
+
+    public void setGiaBan(int GiaBan) {
+        this.GiaBan = GiaBan;
+    }
+
+    public String getMoTa() {
+        return MoTa;
+    }
+
+    public void setMoTa(String MoTa) {
+        this.MoTa = MoTa;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
+    public String getAnh() {
+        return Anh;
+    }
+
+    public void setAnh(String Anh) {
+        this.Anh = Anh;
+    }
+    
     
     
 }

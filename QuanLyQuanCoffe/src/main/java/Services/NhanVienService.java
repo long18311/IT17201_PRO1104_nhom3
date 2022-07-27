@@ -13,8 +13,18 @@ public class NhanVienService implements INhanVienService{
         return nhanVienRepository.getList();
     }
 
+    public NhanVienService() {
+        nhanVienRepository = new NhanVienRepository();
+    }
+
     @Override
     public Boolean save(NhanVien nhanVien) {
+        for (NhanVien vien : nhanVienRepository.getList())
+              {
+                  if (vien.getUserName().equals(nhanVien.getUserName())){
+                      return false;
+                  }
+              }
         return nhanVienRepository.save(nhanVien);
     }
 
@@ -32,4 +42,6 @@ public class NhanVienService implements INhanVienService{
     public NhanVien getById(long id) {
         return nhanVienRepository.getById(id);
     }
+
+   
 }

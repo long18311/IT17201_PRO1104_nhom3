@@ -27,7 +27,7 @@ public class NhanVienRepository {
 
      public List<NhanVien> getList() {
          nhanViens = new ArrayList<>();
-        Query query = session.createQuery("From NhanVien ");// truy vấn trên entity(HQL)
+        Query query = session.createQuery("From NhanVien");// truy vấn trên entity(HQL)
         nhanViens = query.getResultList();
         return nhanViens;
     }
@@ -51,22 +51,28 @@ public class NhanVienRepository {
             return true;
         } catch (Exception e) {
         }
-        return null;
+        return false;
     }
      public Boolean update(NhanVien nhanVien) {
-
-        Query query = session.createQuery("update LopHoc set UserName = :u, MatKhau = :m, Ten_NV = :n, NgaySinh = :s,SDT = :d,Email = :e, ChucVu = :c"
-                + " where Id = :id");
-        query.setParameter("u", nhanVien.getUserName());
-        query.setParameter("m", nhanVien.getMatKhau());
-        query.setParameter("n", nhanVien.getTen_NV());
-        query.setParameter("s", nhanVien.getNgaySinh());
-        query.setParameter("d", nhanVien.getSDT());
-        query.setParameter("e", nhanVien.getEmail());
-        query.setParameter("c", nhanVien.getChucVu());
-        query.setParameter("id", nhanVien.getId());
-        query.executeUpdate();
-        return true;
+        Transaction transaction = null;
+        try  {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update NhanVien set UserName = :u, MatKhau = :m, Ten_NV = :n, NgaySinh = :s,SDT = :d,Email = :e, ChucVu = :c"
+                    + " where Id = :id");
+            query.setParameter("u", nhanVien.getUserName());
+            query.setParameter("m", nhanVien.getMatKhau());
+            query.setParameter("n", nhanVien.getTen_NV());
+            query.setParameter("s", nhanVien.getNgaySinh());
+            query.setParameter("d", nhanVien.getSDT());
+            query.setParameter("e", nhanVien.getEmail());
+            query.setParameter("c", nhanVien.getChucVu());
+            query.setParameter("id", nhanVien.getId());
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
     public NhanVien getById(long id) {
         try (Session session = HibernateUtil.getFACTORY().openSession()) {

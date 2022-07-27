@@ -5,6 +5,7 @@
 package Models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,8 +35,8 @@ public class NhanVien implements Serializable {
     @Column(name = "Ten_NV")
     private String Ten_NV;
     
-    @Column(name = "NgaySinh")
-    private int NgaySinh;
+    @Column(name = "NgaySin")
+    private Date NgaySinh;
     
     @Column(name = "SoDienThoai")
     private String SDT;
@@ -45,6 +46,7 @@ public class NhanVien implements Serializable {
     
     @Column(name = "ChucVu")
     private String ChucVu;
+
 
     public NhanVien() {
     }
@@ -61,7 +63,17 @@ public class NhanVien implements Serializable {
         Ten_NV = ten_NV;
     }
 
-    public NhanVien(long Id, String UserName, String MatKhau, String Ten_NV, int NgaySinh, String SDT, String Email, String ChucVu) {
+    public NhanVien(String userName, String matKhau, String ten_NV, Date ngaySinh, String SDT, String email, String chucVu) {
+        UserName = userName;
+        MatKhau = matKhau;
+        Ten_NV = ten_NV;
+        NgaySinh = ngaySinh;
+        this.SDT = SDT;
+        Email = email;
+        ChucVu = chucVu;
+    }
+
+    public NhanVien(long Id, String UserName, String MatKhau, String Ten_NV, Date NgaySinh, String SDT, String Email, String ChucVu) {
         this.Id = Id;
         this.UserName = UserName;
         this.MatKhau = MatKhau;
@@ -94,11 +106,11 @@ public class NhanVien implements Serializable {
 
 
 
-    public int getNgaySinh() {
+    public Date getNgaySinh() {
         return NgaySinh;
     }
 
-    public void setNgaySinh(int NgaySinh) {
+    public void setNgaySinh(Date NgaySinh) {
         this.NgaySinh = NgaySinh;
     }
 

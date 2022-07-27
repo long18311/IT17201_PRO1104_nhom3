@@ -49,7 +49,7 @@ PRIMARY KEY(IdHoaDon,Id_SP),
 CONSTRAINT FK1 FOREIGN KEY(IdHoaDon)REFERENCES hoadon(IdHoaDon),
 CONSTRAINT FK2 FOREIGN KEY(Id_SP) REFERENCES sanpham(Id_SP)
 );
-
+go
 INSERT INTO NhanVien (UserName,MatKhau,Ten_NV,NgaySin,SoDienThoai,Email,ChucVu)
 VALUES  (N'D123',N'Ng',N'Huy','1989-11-03','0582805832','quyetnhph10607@fpt.edu.vn','QuanLy'),
 		(N'D2222','Dao2222','Huy','1989-11-05','0327492081','huydqph11816@fpt.edu.vn','NhamVienBanHang'),
@@ -63,8 +63,7 @@ VALUES  (N'D123',N'Ng',N'Huy','1989-11-03','0582805832','quyetnhph10607@fpt.edu.
 		(N'L1111',N'V1111',N'Quyết','2000-11-23','09956031909','quyetlv19607@fpt.edu.vn','Nhan Vien Ban Hang'),
 		(N'dao','Duy','Anh','1965-11-08','0986031901','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang')
 
-SELECT * FROM sanpham
-
+go
 INSERT INTO sanpham (TenSP,GiaBanSP,MoTaSP,SoLuongSP)
 VALUES  (N'CaFe Đen',180000,'Hang Nhap Khau',1),
 		(N'Cà phê Robusta',180000,'Hang Nhap Khau',10),
@@ -73,7 +72,7 @@ VALUES  (N'CaFe Đen',180000,'Hang Nhap Khau',1),
 		(N' Cà phê Culi',130000,'Hang Nhap Khau',1),
 		('CaFe Arabica',140000,'Hang Nhap Khau',10),
 		(N'Cà phê Moka',150000,'Hang Nhap Khau',11),
-		(N'Cà phê Latte',160000,'Hang Nhap Khau',12),
+(N'Cà phê Latte',160000,'Hang Nhap Khau',12),
 		 (N'CaFe Đen',180000,'Hang Nhap Khau',1),
 		(N'Cà phê Robusta',180000,'Hang Nhap Khau',10),
 		(N'Cafe Đen Đá',190000,'Hang Nhap Khau',11),
@@ -82,45 +81,52 @@ VALUES  (N'CaFe Đen',180000,'Hang Nhap Khau',1),
 		('CaFe Arabica',140000,'Hang Nhap Khau',10),
 		(N'Cà phê Moka',150000,'Hang Nhap Khau',11),
 		(N'Cà phê Latte',160000,'Hang Nhap Khau',12)
-
-INSERT INTO hoadon(TinhTrangHoaDon,NgayThanhToan,TongTien_Giam_Gia,TongTien_Thanh_Toan)
-VALUES (1,'2022-01-02',100000,1000000),
-		(1,'2022-01-22',20000,200000),
-        (1,'2022-01-22',30000,300000),
-        (0,'2022-04-28',1000,10000),
-        (0,'2022-04-04',5000,500000),
-		(1,'2022-04-28',6000,60000),
-        (0,'2022-06-07',7000,70000),
-        (0,'2022-04-28',8000,70000),
-        (1,'2022-07-28',9000,20000),
-        (0,'2022-08-18',10000,600000),
-        (1,'2022-09-20',1000,60000),
-        (1,'2022-11-13',2000,20000),
-        (0,'2022-11-13',300,7000),
-        (1,'2022-12-14',400,11000),
-        (1,'2022-01-03',50000,120000),
-        (0,'2022-02-27',60000,130000),
-        (1,'2022-03-28',70000,150000),
-		(1,'2022-03-13',8000,16000),
-		(0,'2022-03-07',90000,200000),
-		(1,'2022-03-07',100000,230000),
-		(1,'2022-03-10',100000,2400000),
-		(0,'2022-03-12',2000,30000),
-		(1,'2022-03-12',3000,12000),
-		(0,'2022-03-13',4000,29000),
-		(0,'2022-03-15',5000,19000),
-		(1,'2022-03-18',6000,90000),
-		(0,'2022-03-19',7000,80000),
-		(1,'2022-03-20',80000,110000),
-		(1,'2022-03-21',9000,100000),
-		(1,'2022-03-22',1000,11000),
-		(1,'2022-03-23',10000,120000)
-Select * from hoadonchitiet
-Select * from hoadon
-Select * from sanpham
-Select * from NhanVien
-Select * from khachhang
-		
+go
+INSERT INTO khachhang (TenKH,SoDienThoai)
+		VALUES (N'Hoàng Quốc Việt','0766031931'),
+				(N'Hoàng Văn Thái','0816035922'),
+				(N'Nguyễn Tiến Đạt','0716038911'),
+				(N'Nguyễn Thành Long','0616639799'),
+				(N'Nguyễn Tùng Dương','0616639922'),
+				(N'Hoàng Quốc Việt','0766031936'),
+				(N'Hoàng Văn Thái','0816035925'),
+				(N'Nguyễn Tuấn Đạt','0716038929'),
+				(N'Nguyễn Thành Dương','0616639781'),
+				(N'Nguyễn Tùng Long','0616639911')
+go
+INSERT INTO hoadon(IdKhachHang,TinhTrangHoaDon,NgayThanhToan,TongTien_Giam_Gia,TongTien_Thanh_Toan)
+VALUES (1,1,'2022-01-02',100000,1000000),
+		(2,1,'2022-01-22',20000,200000),
+        (3,1,'2022-01-22',30000,300000),
+        (4,1,'2022-04-28',1000,10000),
+        (5,1,'2022-04-04',5000,500000),
+		(6,1,'2022-04-28',6000,60000),
+        (7,1,'2022-06-07',7000,70000),
+        (8,1,'2022-04-28',8000,70000),
+        (9,1,'2022-07-28',9000,20000),
+        (10,1,'2022-08-18',10000,600000),
+        (1,1,'2022-09-20',1000,60000),
+        (2,1,'2022-11-13',2000,20000),
+        (3,1,'2022-11-13',300,7000),
+        (4,1,'2022-12-14',400,11000),
+        (5,1,'2022-01-03',50000,120000),
+        (6,1,'2022-02-27',60000,130000),
+        (7,1,'2022-03-28',70000,150000),
+		(8,1,'2022-03-13',8000,16000),
+		(9,1,'2022-03-07',90000,200000),
+		(10,1,'2022-03-07',100000,230000),
+		(1,1,'2022-03-10',100000,2400000),
+		(2,1,'2022-03-12',2000,30000),
+		(3,1,'2022-03-12',3000,12000),
+		(3,1,'2022-03-13',4000,29000),
+		(4,1,'2022-03-15',5000,19000),
+		(3,1,'2022-03-18',6000,90000),
+		(5,1,'2022-03-19',7000,80000),
+		(9,1,'2022-03-20',80000,110000),
+		(3,1,'2022-03-21',9000,100000),
+		(2,1,'2022-03-22',1000,11000),
+		(3,1,'2022-03-23',10000,120000)
+go		
 	 INSERT INTO hoadonchitiet (IdHoaDon,Id_SP,SoLuongSP)
 	 VALUES (4,2,30),
 		(5,1,4),
@@ -151,15 +157,10 @@ Select * from khachhang
 		(28,8,28),
 		(29,2,29),
 		(30,1,3)
+go
 
-		INSERT INTO khachhang (TenKH,SoDienThoai)
-		VALUES (N'Hoàng Quốc Việt','0766031931'),
-				(N'Hoàng Văn Thái','0816035922'),
-				(N'Nguyễn Tiến Đạt','0716038911'),
-				(N'Nguyễn Thành Long','0616639799'),
-				(N'Nguyễn Tùng Dương','0616639922'),
-				(N'Hoàng Quốc Việt','0766031936'),
-				(N'Hoàng Văn Thái','0816035925'),
-				(N'Nguyễn Tuấn Đạt','0716038929'),
-				(N'Nguyễn Thành Dương','0616639781'),
-				(N'Nguyễn Tùng Long','0616639911')
+Select * from hoadonchitiet
+Select * from hoadon
+Select * from sanpham
+Select * from NhanVien
+Select * from khachhang
