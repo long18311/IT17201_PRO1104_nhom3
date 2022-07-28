@@ -55,11 +55,11 @@ VALUES  (N'D123',N'Ng',N'Huy','1989-11-03','0582805832','quyetnhph10607@fpt.edu.
 		(N'D2222','Dao2222','Huy','1989-11-05','0327492081','huydqph11816@fpt.edu.vn','NhamVienBanHang'),
 		('Anh3333','Anh3333','Nam','1998-11-06','0116031909','dungnhph19607@fpt.edu.vn','Thu Ngan'),
 		(N'V4444','Linh4444','Chi','1992-11-07','0189031909','chivlph19007@fpt.edu.vn','Nhan VienBanHang'),
-		('Đao','Duy','Anh','1965-11-08','0786031909','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang'),
+		('dao','Duy','Anh','1965-11-08','0786031909','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang'),
 		(N'D22221','D22221','Huy','1989-11-06','0927492081','huydqph11816@fpt.edu.vn','Nhan Vien Bung Bee'),
 		('Anh33331','Anh333311','Nam','1998-11-06','0916031909','dungnhph19607@fpt.edu.vn','Nhan Vien Don Dep'),
 		(N'V44441','Linh44441','Chi','1992-11-07','0989031909','chivlph19007@fpt.edu.vn','Nhan Vien Ban Hang'),
-		(N'Đao','Duy','Anh','1965-11-08','0986031909','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang'),
+		(N'dao','Duy','Anh','1965-11-08','0986031909','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang'),
 		(N'L1111',N'V1111',N'Quyết','2000-11-23','09956031909','quyetlv19607@fpt.edu.vn','Nhan Vien Ban Hang'),
 		(N'dao','Duy','Anh','1965-11-08','0986031901','anhddph18607@fpt.edu.vn','Nhan Vien Ban Hang')
 

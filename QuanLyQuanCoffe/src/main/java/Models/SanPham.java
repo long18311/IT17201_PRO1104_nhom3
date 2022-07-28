@@ -38,6 +38,30 @@ public class SanPham{
         this.hoadonCT = hoadonCT;
     }
 
+    public SanPham(String ten, int giaBan, String moTa, int soLuong) {
+        Ten = ten;
+        GiaBan = giaBan;
+        MoTa = moTa;
+        SoLuong = soLuong;
+    }
+
+    public SanPham(String ten, int giaBan, String moTa, int soLuong, String anh) {
+        Ten = ten;
+        GiaBan = giaBan;
+        MoTa = moTa;
+        SoLuong = soLuong;
+        Anh = anh;
+    }
+
+    public SanPham(String ten, int giaBan, String moTa, int soLuong, String anh, List<HoaDonCT> hoadonCT) {
+        Ten = ten;
+        GiaBan = giaBan;
+        MoTa = moTa;
+        SoLuong = soLuong;
+        Anh = anh;
+        this.hoadonCT = hoadonCT;
+    }
+
     @OneToMany
     @JoinTable(name = "sanpham")
     private List<HoaDonCT> hoadonCT;

@@ -440,7 +440,6 @@ public class NhanVienJDialog extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        if(idNhanVien == -1){
-           JOptionPane.showMessageDialog(this,"xóa Thành công");
            return;
        }
         if(nhanVienService.delete(nhanVienService.getById(idNhanVien)) == true){

@@ -12,14 +12,16 @@ import Repositories.HoaDonRepository;
 import Repositories.NhanVienRepository;
 import Repositories.SanPhanRepository;
 import Services.INhanVienService;
+import Services.ISanPhamService;
 import Services.NhanVienService;
+import Services.SanPhamService;
 
 public class vui {
-    static INhanVienService NV = new NhanVienService();
+    static SanPhamService NV = new SanPhamService();
     public static void main(String[] args) {
-        List<NhanVien> NVs = NV.getList();
+        List<SanPham> NVs = NV.getList();
         System.out.println("vui");
-        for (NhanVien nv : NVs) {
+        for (SanPham nv : NVs) {
             System.out.println(nv.getId());
         }
     }

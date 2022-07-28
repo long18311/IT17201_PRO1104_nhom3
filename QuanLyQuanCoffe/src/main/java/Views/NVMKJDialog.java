@@ -26,6 +26,10 @@ public class NVMKJDialog extends javax.swing.JDialog {
         super(new javax.swing.JFrame(), true);
         initComponents();
         nhanVien = nhanVienService.getById(id);
+        init();
+    } public void init(){
+        setLocationRelativeTo(null);
+        setTitle("Quản lí Nhân Viên");
     }
     public NVMKJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
