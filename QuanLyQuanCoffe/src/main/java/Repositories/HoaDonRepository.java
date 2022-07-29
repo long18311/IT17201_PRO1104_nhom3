@@ -6,9 +6,10 @@ import Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.query.Query;
 
 public class HoaDonRepository {
     Session session = HibernateUtil.getFACTORY().openSession();
@@ -50,8 +51,8 @@ public class HoaDonRepository {
         Transaction transaction = null;
         try  {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update HoaDon set khachHang = :u, TinhTrangHD = :m, NgayTT = :n,TTGiamGia = :d,TTThanhToan = :e"
-                    + " where Id = :i");
+            Query query = session.createQuery("update HoaDon set khachHang = :u, TinhTrangHD = :m, NgayTT = :n,TTGiamGia = :d,TTThanhToan = :e "
+                    + "where id = :i");
             query.setParameter("u", hoaDon.getKhachHang());
             query.setParameter("m", hoaDon.isTinhTrangHD());
             query.setParameter("n", hoaDon.getNgayTT());

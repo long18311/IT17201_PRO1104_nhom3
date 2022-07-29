@@ -4,7 +4,8 @@
  */
 package Models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Sanpham")
-public class SanPham{
+public class SanPham implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

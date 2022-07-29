@@ -5,9 +5,9 @@ import Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.query.Query;
 
 public class SanPhanRepository {
    Session session = HibernateUtil.getFACTORY().openSession();
@@ -54,8 +54,9 @@ public class SanPhanRepository {
             query.setParameter("m", sanPham.getMoTa());
             query.setParameter("s", sanPham.getSoLuong());
             query.setParameter("a", sanPham.getAnh());
-            query.setParameter("i", sanPham.getId());
+            query.setParameter("i", sanPham.getId());           
             query.executeUpdate();
+//             session.update(sanPham);
             tx.commit();
             return true;
         } catch(Exception e){

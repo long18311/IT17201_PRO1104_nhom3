@@ -6,12 +6,7 @@ package Models;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  *
@@ -24,7 +19,7 @@ public class NhanVien implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_NV")
-    private long Id;
+    private long id;
     
     @Column(name = "UserName")
     private String UserName;
@@ -52,7 +47,7 @@ public class NhanVien implements Serializable {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public String getTen_NV() {
@@ -74,7 +69,7 @@ public class NhanVien implements Serializable {
     }
 
     public NhanVien(long Id, String UserName, String MatKhau, String Ten_NV, Date NgaySinh, String SDT, String Email, String ChucVu) {
-        this.Id = Id;
+        this.id = Id;
         this.UserName = UserName;
         this.MatKhau = MatKhau;
         this.Ten_NV = Ten_NV;
@@ -85,7 +80,7 @@ public class NhanVien implements Serializable {
     }
 
     public void setId(long Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public String getUserName() {

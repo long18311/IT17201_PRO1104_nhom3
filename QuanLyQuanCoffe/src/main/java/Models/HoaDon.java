@@ -4,9 +4,10 @@
  */
 package Models;
 
+import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.*;
 
 /**
  *
@@ -14,11 +15,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "hoadon")
-public class HoaDon {
+public class HoaDon implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHoaDon")
-    private long Id;
+    private long id;
     @ManyToOne
     @JoinColumn(name = "IdKhachHang", nullable = false)
     private KhachHang khachHang;
@@ -43,11 +44,11 @@ public class HoaDon {
 
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        id = id;
     }
 
     public KhachHang getKhachHang() {
@@ -91,7 +92,7 @@ public class HoaDon {
     }
 
     public HoaDon(long id, KhachHang khachHang, boolean tinhTrangHD, Date ngayTT, int TTGiamGia, int TTThanhToan) {
-        Id = id;
+        this.id = id;
         this.khachHang = khachHang;
         TinhTrangHD = tinhTrangHD;
         NgayTT = ngayTT;

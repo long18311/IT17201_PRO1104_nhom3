@@ -38,11 +38,12 @@ public class SanPhamJDialog extends javax.swing.JDialog {
     }
      public void init(){
         setLocationRelativeTo(null);
-        setTitle("Quản lí Nhân Viên");
+        setTitle("Quản lí Sản Phẩm");
     }
     public SanPhamJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        init();
         jButton1.setEnabled(true);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
@@ -96,12 +97,16 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("số lượng:");
 
+        txtten.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtgia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtgia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtgiaMouseExited(evt);
             }
         });
 
+        txtsoluong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtsoluong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtsoluongMouseExited(evt);
@@ -160,6 +165,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tblSanPham);
 
         txtmota.setColumns(20);
+        txtmota.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtmota.setRows(5);
         jScrollPane2.setViewportView(txtmota);
 
@@ -190,7 +196,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -228,8 +234,8 @@ public class SanPhamJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,6 +259,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         SanPham sanPham = getSanPhamtxt();
         if(sanPhamService.save(sanPham) == true){
             JOptionPane.showMessageDialog(this,"Thêm Thành công");
+            loadTableSanPham();
             return;
         }
         JOptionPane.showMessageDialog(this,"Thêm Thất bại");
@@ -264,6 +271,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         nhanVien.setId(idSanPham);
         if(sanPhamService.update(nhanVien) == true){
             JOptionPane.showMessageDialog(this,"Sửa Thành công");
+            loadTableSanPham();
             return;
         }
         JOptionPane.showMessageDialog(this,"Sửa Thất bại");
@@ -275,6 +283,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         }
         if(sanPhamService.delete(sanPhamService.getById(idSanPham)) == true){
             JOptionPane.showMessageDialog(this,"xóa Thành công");
+            loadTableSanPham();
             return;
         }
         JOptionPane.showMessageDialog(this,"xóa Thất bại");
@@ -282,6 +291,10 @@ public class SanPhamJDialog extends javax.swing.JDialog {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         idSanPham = -1;
+        txtten.setText("");
+        txtsoluong.setText("");
+        txtgia.setText("");
+        txtmota.setText("");
         jButton1.setEnabled(true);
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);

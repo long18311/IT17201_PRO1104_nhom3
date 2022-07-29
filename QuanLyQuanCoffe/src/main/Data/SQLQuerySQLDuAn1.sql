@@ -65,25 +65,18 @@ VALUES  (N'D123',N'Ng',N'Huy','1989-11-03','0582805832','quyetnhph10607@fpt.edu.
 
 go
 INSERT INTO sanpham (TenSP,GiaBanSP,MoTaSP,SoLuongSP)
-VALUES  (N'CaFe Đen',180000,'Hang Nhap Khau',1),
-		(N'Cà phê Robusta',180000,'Hang Nhap Khau',10),
-		(N'Cafe Đen Đá',190000,'Hang Nhap Khau',11),
-		(N'Cà phê Arabica',110000,'Hang Nhap Khau',12),
-		(N' Cà phê Culi',130000,'Hang Nhap Khau',1),
-		('CaFe Arabica',140000,'Hang Nhap Khau',10),
-		(N'Cà phê Moka',150000,'Hang Nhap Khau',11),
-(N'Cà phê Latte',160000,'Hang Nhap Khau',12),
-		 (N'CaFe Đen',180000,'Hang Nhap Khau',1),
-		(N'Cà phê Robusta',180000,'Hang Nhap Khau',10),
-		(N'Cafe Đen Đá',190000,'Hang Nhap Khau',11),
-		(N'Cà phê Arabica',110000,'Hang Nhap Khau',12),
-		(N' Cà phê Culi',130000,'Hang Nhap Khau',1),
-		('CaFe Arabica',140000,'Hang Nhap Khau',10),
-		(N'Cà phê Moka',150000,'Hang Nhap Khau',11),
-		(N'Cà phê Latte',160000,'Hang Nhap Khau',12)
+VALUES  (N'CaFe Đen',32000,'Hang Nhap Khau',40),
+		(N'Cà phê Robusta',50000,'Hang Nhap Khau',70),
+		(N'Cafe Đen Đá',18000,'Hang Nhap Khau',50),
+		(N'Cà phê Arabica',110000,'Hang Nhap Khau',100),
+		(N' Cà phê Culi',200000,'Hang Nhap Khau',80),
+		('CaFe Arabica',60000,'Hang Nhap Khau',80),
+		(N'Cà phê Moka',150000,'Hang Nhap Khau',60),
+		(N'Cà phê Latte',70000,'Hang Nhap Khau',50)
 go
 INSERT INTO khachhang (TenKH,SoDienThoai)
-		VALUES (N'Hoàng Quốc Việt','0766031931'),
+		VALUES (N'People','0123456789'),
+				(N'Hoàng Quốc Việt','0766031931'),
 				(N'Hoàng Văn Thái','0816035922'),
 				(N'Nguyễn Tiến Đạt','0716038911'),
 				(N'Nguyễn Thành Long','0616639799'),
@@ -92,7 +85,8 @@ INSERT INTO khachhang (TenKH,SoDienThoai)
 				(N'Hoàng Văn Thái','0816035925'),
 				(N'Nguyễn Tuấn Đạt','0716038929'),
 				(N'Nguyễn Thành Dương','0616639781'),
-				(N'Nguyễn Tùng Long','0616639911')
+				(N'Nguyễn Tùng Long','0616639911'),
+				(N'Trần Thành Long','0942256009')
 go
 INSERT INTO hoadon(IdKhachHang,TinhTrangHoaDon,NgayThanhToan,TongTien_Giam_Gia,TongTien_Thanh_Toan)
 VALUES (1,1,'2022-01-02',100000,1000000),

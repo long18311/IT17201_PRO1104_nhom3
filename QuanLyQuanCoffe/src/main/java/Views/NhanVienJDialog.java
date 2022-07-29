@@ -54,8 +54,11 @@ public class NhanVienJDialog extends javax.swing.JDialog {
         init();
         nhanVienService = new NhanVienService();
         nhanViens = new ArrayList<>();
-        nhanViens = nhanVienService.getList();
         loadTableNhanVien();
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        jButton5.setEnabled(false);
     }
     public NhanVien getNhanVientxt(){
         Date date = null;
@@ -365,6 +368,7 @@ public class NhanVienJDialog extends javax.swing.JDialog {
         NhanVien nhanVien = getNhanVientxt();
         if(nhanVienService.save(nhanVien) == true){
             JOptionPane.showMessageDialog(this,"Thêm Thành công");
+            loadTableNhanVien();
             return;
         }
         JOptionPane.showMessageDialog(this,"Thêm Thất bại");
@@ -433,6 +437,7 @@ public class NhanVienJDialog extends javax.swing.JDialog {
          nhanVien.setId(idNhanVien);
         if(nhanVienService.update(nhanVien) == true){
             JOptionPane.showMessageDialog(this,"Sửa Thành công");
+            loadTableNhanVien();
             return;
         }
         JOptionPane.showMessageDialog(this,"Sửa Thất bại");
@@ -444,6 +449,7 @@ public class NhanVienJDialog extends javax.swing.JDialog {
        }
         if(nhanVienService.delete(nhanVienService.getById(idNhanVien)) == true){
             JOptionPane.showMessageDialog(this,"xóa Thành công");
+            loadTableNhanVien();
             return;
         }
         JOptionPane.showMessageDialog(this,"xóa Thất bại");      

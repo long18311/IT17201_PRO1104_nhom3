@@ -1,14 +1,13 @@
 package Repositories;
 
 import Models.KhachHang;
-import Models.SanPham;
 import Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.query.Query;
 
 public class KhachHangReposittory {
     Session session = HibernateUtil.getFACTORY().openSession();
@@ -19,7 +18,7 @@ public class KhachHangReposittory {
     }
     public List<KhachHang> getList() {
         khachHangs = new ArrayList<KhachHang>();
-        Query query = session.createQuery("From SanPham");
+        Query query = session.createQuery("From KhachHang");
         khachHangs = query.getResultList();
         return khachHangs;
     }
@@ -38,7 +37,10 @@ public class KhachHangReposittory {
         Transaction tx = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             tx = session.beginTransaction();
-            session.delete(khachHang);
+//            Session session = HibernateUtil.getFACTORY().openSession();
+            Query query = session.createQuery("DELETE FROM KhachHang k WHERE k.id = :id");
+            query.setParameter("id", khachHang.getId());
+            query.executeUpdate();
             tx.commit();
             return true;
         } catch (Exception e) {
@@ -49,7 +51,7 @@ public class KhachHangReposittory {
         Transaction tx = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update KhachHang set TenKH = :t , SDT = :g  "+" + Where Id = :i");
+            Query query = session.createQuery("update KhachHang set TenKH = :t , SDT = :g  "+" Where Id = :i");
             query.setParameter("t", khachHang.getTenKH());
             query.setParameter("g", khachHang.getSDT());
             query.setParameter("i", khachHang.getId());
@@ -69,5 +71,28 @@ public class KhachHangReposittory {
             return null;
         }
     }
-
+     public static void main(String[] args) {
+         KhachHangReposittory NV = new KhachHangReposittory();
+         List<KhachHang> NVs = new ArrayList<>();
+         NVs = NV.getList();
+         System.out.println("vui");
+        System.out.println(NVs.size());
+        for (KhachHang nv : NVs) {
+            System.out.println(nv.getId());
+        }
+         System.out.println("/////////");
+         if (NV.delete(NVs.get(10))) {
+             System.out.println("Delete thành công");
+         } else{
+             System.out.println("Delete lôi");
+         }
+         System.out.println("/////////");
+         NVs = new ArrayList<>();
+         NVs = NV.getList();
+         System.out.println(NVs.size());
+        for (KhachHang nv : NVs) {
+            System.out.println(nv.getId());
+        }
+         
+     }
 }

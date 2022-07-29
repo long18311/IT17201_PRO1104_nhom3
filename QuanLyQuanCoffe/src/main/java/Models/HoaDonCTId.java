@@ -4,8 +4,7 @@
  */
 package Models;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**

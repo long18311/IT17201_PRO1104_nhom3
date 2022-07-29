@@ -5,9 +5,10 @@ import Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.query.Query;
 
 public class HoaDonCTRepository {
     Session session = HibernateUtil.getFACTORY().openSession();

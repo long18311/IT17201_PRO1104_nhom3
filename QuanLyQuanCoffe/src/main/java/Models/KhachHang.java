@@ -5,14 +5,8 @@
 package Models;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 /**
  *
@@ -20,11 +14,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table (name = "khachhang")
-public class KhachHang {
+public class KhachHang implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKhachHang")
-    private long Id;
+    private long id;
     @Column(name = "TenKH")
     private String TenKH;
     @Column(name = "SoDienThoai")
@@ -34,10 +28,15 @@ public class KhachHang {
     private List<HoaDon> hoadons;
 
     public KhachHang(long Id, String TenKH, String SDT, List<HoaDon> hoadons) {
-        this.Id = Id;
+        this.id = Id;
         this.TenKH = TenKH;
         this.SDT = SDT;
         this.hoadons = hoadons;
+    }
+
+    public KhachHang(String tenKH, String SDT) {
+        TenKH = tenKH;
+        this.SDT = SDT;
     }
 
     public List<HoaDon> getHoadons() {
@@ -51,17 +50,17 @@ public class KhachHang {
     }
 
     public KhachHang(long id, String tenKH, String SDT) {
-        Id = id;
+        id = id;
         TenKH = tenKH;
         this.SDT = SDT;
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        id = id;
     }
 
     public String getTenKH() {

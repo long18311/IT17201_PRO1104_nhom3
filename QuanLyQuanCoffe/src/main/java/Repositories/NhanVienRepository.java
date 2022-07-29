@@ -8,9 +8,9 @@ import Models.NhanVien;
 import Utilities.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -58,7 +58,7 @@ public class NhanVienRepository {
         try  {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update NhanVien set UserName = :u, MatKhau = :m, Ten_NV = :n, NgaySinh = :s,SDT = :d,Email = :e, ChucVu = :c"
-                    + " where Id = :id");
+                    + " where id = :id");
             query.setParameter("u", nhanVien.getUserName());
             query.setParameter("m", nhanVien.getMatKhau());
             query.setParameter("n", nhanVien.getTen_NV());

@@ -72,7 +72,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/baove.png"/>
+          <Image iconType="2" name="C:\vuithoi\DuAn1\thu\IT17201_PRO1104_nhom3\QuanLyQuanCoffe\src\main\resources\baove.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>

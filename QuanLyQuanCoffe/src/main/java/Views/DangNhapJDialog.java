@@ -24,11 +24,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
      */
      INhanVienService nhanVienService = new NhanVienService();
      List<NhanVien> nhanviens = new ArrayList<>();
+
+   
      public DangNhapJDialog() {
         super(new javax.swing.JFrame(), true);
         initComponents();
          nhanviens = new ArrayList<>();
          nhanviens = nhanVienService.getList();
+         init();
     }
       public void init(){
         setLocationRelativeTo(null);
@@ -37,6 +40,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        nhanviens = new ArrayList<>();
+        nhanviens = nhanVienService.getList();
+        init();
     }
 
     /**
@@ -58,7 +64,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/baove.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\vuithoi\\DuAn1\\thu\\IT17201_PRO1104_nhom3\\QuanLyQuanCoffe\\src\\main\\resources\\baove.png")); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -144,7 +150,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         if(a == -1){
               JOptionPane.showMessageDialog(this,"tài khỏa hoặc mật khẩu của bạn bị sai");
               return;
-        } else if(nhanviens.get(a).getUserName().equals(new String(txtPass.getPassword()))){
+        } else if(nhanviens.get(a).getMatKhau().equals(new String(txtPass.getPassword()))){
             JOptionPane.showMessageDialog(this,"Đăng nhâp thành công");
             Auth.setUser(nhanviens.get(a));
             this.dispose();

@@ -4,7 +4,10 @@
  */
 package Models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.io.Serializable;
+
+
 
 /**
  *
@@ -12,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "hoadonchitiet")
-public class HoaDonCT {
+public class HoaDonCT implements Serializable{
      @EmbeddedId
     private HoaDonCTId id;
     @ManyToOne
