@@ -18,18 +18,15 @@ import org.hibernate.query.Query;
  */
 public class NhanVienRepository {
 
-    Session session = HibernateUtil.getFACTORY().openSession();
-    List<NhanVien> nhanViens;
+   
 
     public NhanVienRepository() {
-        nhanViens = new ArrayList<>();
     }
 
      public List<NhanVien> getList() {
-         nhanViens = new ArrayList<>();
+        Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("From NhanVien");// truy vấn trên entity(HQL)
-        nhanViens = query.getResultList();
-        return nhanViens;
+        return query.getResultList();
     }
     public Boolean save(NhanVien nhanVien) {
         Transaction transaction = null;
@@ -55,9 +52,9 @@ public class NhanVienRepository {
     }
      public Boolean update(NhanVien nhanVien) {
         Transaction transaction = null;
-        try  {
+      try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update NhanVien set UserName = :u, MatKhau = :m, Ten_NV = :n, NgaySinh = :s,SDT = :d,Email = :e, ChucVu = :c"
+            Query query = session.createQuery("update NhanVien set UserName = :u, MatKhau = :m, Ten_NV = :n, NgaySinh = :s,SDT = :d,Email = :e, ChucVu = :c, TT = :tt"
                     + " where id = :id");
             query.setParameter("u", nhanVien.getUserName());
             query.setParameter("m", nhanVien.getMatKhau());
@@ -65,8 +62,9 @@ public class NhanVienRepository {
             query.setParameter("s", nhanVien.getNgaySinh());
             query.setParameter("d", nhanVien.getSDT());
             query.setParameter("e", nhanVien.getEmail());
-            query.setParameter("c", nhanVien.getChucVu());
+            query.setParameter("c", nhanVien.isChucVu());
             query.setParameter("id", nhanVien.getId());
+            query.setParameter("tt", nhanVien.isTT());
             query.executeUpdate();
             transaction.commit();
             return true;

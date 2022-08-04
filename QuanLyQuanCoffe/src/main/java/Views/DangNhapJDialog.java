@@ -64,7 +64,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\vuithoi\\DuAn1\\thu\\IT17201_PRO1104_nhom3\\QuanLyQuanCoffe\\src\\main\\resources\\baove.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baove.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

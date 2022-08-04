@@ -12,18 +12,17 @@ import java.util.List;
 import org.hibernate.query.Query;
 
 public class HoaDonRepository {
-    Session session = HibernateUtil.getFACTORY().openSession();
-    List<HoaDon> hoaDons;
+   
+   
 
     public HoaDonRepository() {
-        hoaDons = new ArrayList<>();
+       
     }
 
     public List<HoaDon> getList() {
-        hoaDons = new ArrayList<>();
+        Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("From HoaDon ");// truy vấn trên entity(HQL)
-        hoaDons = query.getResultList();
-        return hoaDons;
+        return query.getResultList();
     }
     public Boolean save(HoaDon hoaDon) {
         Transaction transaction = null;
@@ -49,15 +48,14 @@ public class HoaDonRepository {
     }
     public Boolean update(HoaDon hoaDon) {
         Transaction transaction = null;
-        try  {
+        try (Session session = HibernateUtil.getFACTORY().openSession()){
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update HoaDon set khachHang = :u, TinhTrangHD = :m, NgayTT = :n,TTGiamGia = :d,TTThanhToan = :e "
+            Query query = session.createQuery("update HoaDon set khachHang = :u, TinhTrangHD = :m, NgayTT = :n,TTGiamGia = :d "
                     + "where id = :i");
             query.setParameter("u", hoaDon.getKhachHang());
             query.setParameter("m", hoaDon.isTinhTrangHD());
             query.setParameter("n", hoaDon.getNgayTT());
             query.setParameter("d", hoaDon.getTTGiamGia());
-            query.setParameter("e", hoaDon.getTTThanhToan());
             query.setParameter("i", hoaDon.getId());
             query.executeUpdate();
             transaction.commit();

@@ -13,70 +13,61 @@ import java.util.List;
  * @author vanlo
  */
 @Entity
-@Table(name = "Sanpham")
+@Table(name = "SanPham")
 public class SanPham implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_SP")
+    @Column(name = "id")
     private long id;
-    @Column(name = "TenSP")
+    @Column(name = "Ten")
     private String Ten;
-    @Column(name = "GiaBanSP")
+    @Column(name = "GiaBan")
     private int GiaBan;
-    @Column(name = "MoTaSP")
+    @Column(name = "MoTa")
     private String MoTa;
-    @Column(name = "SoLuongSP")
-    private int SoLuong;
-    @Column(name = "Anh")
-    private String Anh;
+    @Column(name = "TT")
+    private boolean TT;
+//    @OneToMany(mappedBy = "hoaDon")
+//    private List<HoaDonCT> hoadonCT;
 
-    public List<HoaDonCT> getHoadonCT() {
-        return hoadonCT;
+    public boolean isTT() {
+        return TT;
     }
 
-    public void setHoadonCT(List<HoaDonCT> hoadonCT) {
-        this.hoadonCT = hoadonCT;
+    public void setTT(boolean TT) {
+        this.TT = TT;
     }
 
-    public SanPham(String ten, int giaBan, String moTa, int soLuong) {
-        Ten = ten;
-        GiaBan = giaBan;
-        MoTa = moTa;
-        SoLuong = soLuong;
-    }
-
-    public SanPham(String ten, int giaBan, String moTa, int soLuong, String anh) {
-        Ten = ten;
-        GiaBan = giaBan;
-        MoTa = moTa;
-        SoLuong = soLuong;
-        Anh = anh;
-    }
-
-    public SanPham(String ten, int giaBan, String moTa, int soLuong, String anh, List<HoaDonCT> hoadonCT) {
-        Ten = ten;
-        GiaBan = giaBan;
-        MoTa = moTa;
-        SoLuong = soLuong;
-        Anh = anh;
-        this.hoadonCT = hoadonCT;
-    }
-
-    @OneToMany
-    @JoinTable(name = "sanpham")
-    private List<HoaDonCT> hoadonCT;
-
-    public SanPham() {
-        
-    }
-    public SanPham(long id, String Ten, int GiaBan, String MoTa, int SoLuong, String Anh) {
+    public SanPham(long id, String Ten, int GiaBan, String MoTa, boolean TT) {
         this.id = id;
         this.Ten = Ten;
         this.GiaBan = GiaBan;
         this.MoTa = MoTa;
-        this.SoLuong = SoLuong;
-        this.Anh = Anh;
+        this.TT = TT;
+    }
+
+    public SanPham(String Ten, int GiaBan, String MoTa, boolean TT) {
+        this.Ten = Ten;
+        this.GiaBan = GiaBan;
+        this.MoTa = MoTa;
+        this.TT = TT;
+    }
+
+    public SanPham(long id, String ten, int giaBan, String moTa) {
+        this.id = id;
+        Ten = ten;
+        GiaBan = giaBan;
+        MoTa = moTa;
+    }
+
+    public SanPham(String ten, int giaBan, String moTa) {
+        Ten = ten;
+        GiaBan = giaBan;
+        MoTa = moTa;
+    }
+
+    public SanPham() {
     }
 
     public long getId() {
@@ -91,42 +82,23 @@ public class SanPham implements Serializable{
         return Ten;
     }
 
-    public void setTen(String Ten) {
-        this.Ten = Ten;
+    public void setTen(String ten) {
+        Ten = ten;
     }
 
     public int getGiaBan() {
         return GiaBan;
     }
 
-    public void setGiaBan(int GiaBan) {
-        this.GiaBan = GiaBan;
+    public void setGiaBan(int giaBan) {
+        GiaBan = giaBan;
     }
 
     public String getMoTa() {
         return MoTa;
     }
 
-    public void setMoTa(String MoTa) {
-        this.MoTa = MoTa;
+    public void setMoTa(String moTa) {
+        MoTa = moTa;
     }
-
-    public int getSoLuong() {
-        return SoLuong;
-    }
-
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
-    }
-
-    public String getAnh() {
-        return Anh;
-    }
-
-    public void setAnh(String Anh) {
-        this.Anh = Anh;
-    }
-    
-    
-    
 }

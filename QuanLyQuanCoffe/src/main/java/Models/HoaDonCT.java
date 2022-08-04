@@ -14,24 +14,44 @@ import java.io.Serializable;
  * @author vanlo
  */
 @Entity
-@Table(name = "hoadonchitiet")
+@Table(name = "HoaDonCT")
 public class HoaDonCT implements Serializable{
-     @EmbeddedId
-    private HoaDonCTId id;
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private long Id;
     @ManyToOne
-    @MapsId("IdHoaDon")
-    @JoinColumn(name = "IdHoaDon", nullable = false)
-    private HoaDon hoaDon;
+    @JoinColumn(name = "IdHD", nullable = false)
+    private HoaDon hoaDon; 
     @ManyToOne
-    @MapsId("Id_SP")
-    @JoinColumn(name = "Id_SP", nullable = false)
-    private SanPham sanPham;
-    @Column(name = "SoLuongSP")
-    private int SoLuongSP;
+    @JoinColumn(name = "IdSP", nullable = false)
+    private SanPham sanPham; 
+    @Column(name = "SoLuong")
+    private int SoLuong;
+    @Column(name = "giaLM")
+    private int giaLM;
 
+    public HoaDonCT(long Id) {
+        this.Id = Id;
+    }
 
+    public HoaDonCT(HoaDon hoaDon, SanPham sanPham, int SoLuong, int giaLM) {
+        this.hoaDon = hoaDon;
+        this.sanPham = sanPham;
+        this.SoLuong = SoLuong;
+        this.giaLM = giaLM;
+    }
 
+    public HoaDonCT() {
+    }
 
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long Id) {
+        this.Id = Id;
+    }
 
     public HoaDon getHoaDon() {
         return hoaDon;
@@ -49,20 +69,19 @@ public class HoaDonCT implements Serializable{
         this.sanPham = sanPham;
     }
 
-    public int getSoLuongSP() {
-        return SoLuongSP;
+    public int getSoLuong() {
+        return SoLuong;
     }
 
-    public void setSoLuongSP(int soLuongSP) {
-        SoLuongSP = soLuongSP;
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
     }
 
-    public HoaDonCT(HoaDon hoaDon, SanPham sanPham, int soLuongSP) {
-        this.hoaDon = hoaDon;
-        this.sanPham = sanPham;
-        SoLuongSP = soLuongSP;
+    public int getGiaLM() {
+        return giaLM;
     }
 
-    public HoaDonCT() {
+    public void setGiaLM(int giaLM) {
+        this.giaLM = giaLM;
     }
 }

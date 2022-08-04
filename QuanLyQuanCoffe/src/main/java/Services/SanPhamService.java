@@ -6,7 +6,6 @@ import Repositories.SanPhanRepository;
 import java.util.List;
 
 public class SanPhamService implements ISanPhamService{
-    private List<SanPham> sanPhams ;
     private SanPhanRepository sanphamRepository = new SanPhanRepository();
     @Override
     public List<SanPham> getList() {

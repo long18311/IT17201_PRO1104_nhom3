@@ -10,17 +10,14 @@ import java.util.List;
 import org.hibernate.query.Query;
 
 public class SanPhanRepository {
-   Session session = HibernateUtil.getFACTORY().openSession();
-   List<SanPham> sanPhams;
+   
 
     public SanPhanRepository() {
-        sanPhams = session.createQuery("From SanPham").getResultList();
     }
     public List<SanPham> getList() {
-        sanPhams = new ArrayList<SanPham>();
+        Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("From SanPham");
-        sanPhams = query.getResultList();
-        return sanPhams;
+        return query.getResultList();
     }
     public Boolean save(SanPham sanPham) {
         Transaction tx = null;
@@ -48,13 +45,12 @@ public class SanPhanRepository {
         Transaction tx = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             tx = session.beginTransaction();
-            Query query = session.createQuery("update SanPham set Ten = :t , GiaBan = :g , MoTa = :m ,SoLuongSP = :s ,Anh = :a "+" + Where id = :i");
+            Query query = session.createQuery("update SanPham set Ten = :t , GiaBan = :g , MoTa = :m , TT = :tt "+"Where id = :i");
             query.setParameter("t", sanPham.getTen());
             query.setParameter("g", sanPham.getGiaBan());
             query.setParameter("m", sanPham.getMoTa());
-            query.setParameter("s", sanPham.getSoLuong());
-            query.setParameter("a", sanPham.getAnh());
-            query.setParameter("i", sanPham.getId());           
+            query.setParameter("i", sanPham.getId());
+            query.setParameter("tt", sanPham.isTT());
             query.executeUpdate();
 //             session.update(sanPham);
             tx.commit();

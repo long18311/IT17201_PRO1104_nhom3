@@ -45,21 +45,25 @@ public class KhachHangJDialog extends javax.swing.JDialog {
     }
      public void init(){
         setLocationRelativeTo(null);
-        setTitle("Quản lí Nhân Viên");
+        setTitle("Quản lí Khách hàng");
     }
     public KhachHang getKhachHangtxt(){
         
         
-        return new KhachHang(txtten.getText(),txtSDT.getText());
+        return new KhachHang(txtten.getText(),txtSDT.getText(), true);
     }
     public void loadTableNhanVien(){
+        List<KhachHang> khachHang = new ArrayList<>();
         khachHangs = new ArrayList<>();
-        khachHangs = khachHangService.getList();
+        khachHang = khachHangService.getList();
         _Model = new DefaultTableModel();
         _Model = (DefaultTableModel) tblkhachhang.getModel();
         _Model.setRowCount(0);
-        for (int i = 0; i < khachHangs.size(); i++) {
-            _Model.addRow(new Object[]{khachHangs.get(i).getTenKH(), khachHangs.get(i).getSDT()});
+        for (int i = 0; i < khachHang.size(); i++) {
+            if(khachHang.get(i).isTT()) {
+                khachHangs.add(khachHang.get(i));
+                _Model.addRow(new Object[]{khachHang.get(i).getTenKH(), khachHang.get(i).getSDT()});
+            }
         }
     }
 
@@ -83,6 +87,7 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,7 +96,7 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         jLabel1.setText("Quản Lý Khách Hàng");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Tên sản phẩm:");
+        jLabel2.setText("Tên khách hàng:");
 
         txtten.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -159,6 +164,15 @@ public class KhachHangJDialog extends javax.swing.JDialog {
             }
         });
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton5.setText("Lịch sử xóa");
+        jButton5.setToolTipText("");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,19 +191,24 @@ public class KhachHangJDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtten))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(146, 146, 146))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(161, 161, 161))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(34, 34, 34)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addComponent(jScrollPane1)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton5)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,10 +225,11 @@ public class KhachHangJDialog extends javax.swing.JDialog {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3)
                     .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5))
+                .addGap(18, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -243,7 +263,8 @@ public class KhachHangJDialog extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         KhachHang khachHang = getKhachHangtxt();
         khachHang.setId(_id);
-        if(khachHangService.update(khachHang) == true){
+        
+        if(khachHangService.update(khachHang)){
             JOptionPane.showMessageDialog(this,"Sửa Thành công");
             loadTableNhanVien();
             return;
@@ -255,8 +276,11 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         if(_id == -1){
             return;
         }
-        if(khachHangService.delete(khachHangService.getById(_id)) == true){
-            JOptionPane.showMessageDialog(this,"xóa Thành công");            
+        KhachHang khachHang = khachHangService.getById(_id);
+        khachHang.setTT(false);
+        if(khachHangService.update(khachHang) == true){
+            _id = -1;
+            JOptionPane.showMessageDialog(this,"xóa Thành công");
             loadTableNhanVien();
             return;
         }
@@ -282,6 +306,11 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
     }//GEN-LAST:event_tblkhachhangMouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        new LichSuKHJDialog(new javax.swing.JFrame(), true).setVisible(true);
+         loadTableNhanVien();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +359,7 @@ public class KhachHangJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;

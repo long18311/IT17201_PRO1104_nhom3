@@ -15,10 +15,9 @@ import java.util.List;
  * @author vanlo
  */
 public class KhachHangService implements IKhachHangService {
-    private List<KhachHang> khachHangs = new ArrayList<KhachHang>();
     public KhachHangReposittory khachHangReposittory = new KhachHangReposittory();
     public KhachHangService() {
-        khachHangs = new ArrayList<KhachHang>();
+        List<KhachHang> khachHangs = new ArrayList<KhachHang>();
         khachHangReposittory = new KhachHangReposittory();
     }
     @Override

@@ -18,7 +18,7 @@ public class NhanVien implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_NV")
+    @Column(name = "id")
     private long id;
     
     @Column(name = "UserName")
@@ -30,24 +30,80 @@ public class NhanVien implements Serializable {
     @Column(name = "Ten_NV")
     private String Ten_NV;
     
-    @Column(name = "NgaySin")
+    @Column(name = "NgaySinh")
     private Date NgaySinh;
     
-    @Column(name = "SoDienThoai")
+    @Column(name = "SDT")
     private String SDT;
     
     @Column(name = "Email")
     private String Email;
     
     @Column(name = "ChucVu")
-    private String ChucVu;
-
+    private boolean ChucVu;
+    
+    @Column(name = "TT")
+    private boolean TT;
 
     public NhanVien() {
     }
 
+//    public NhanVien(String userName, String matKhau, String ten_NV, Date ngaySinh, String SDT, String email, boolean chucVu) {
+//        UserName = userName;
+//        MatKhau = matKhau;
+//        Ten_NV = ten_NV;
+//        NgaySinh = ngaySinh;
+//        this.SDT = SDT;
+//        Email = email;
+//        ChucVu = chucVu;
+//    }
+
+    public NhanVien(long id, String UserName, String MatKhau, String Ten_NV, Date NgaySinh, String SDT, String Email, boolean ChucVu, boolean TT) {
+        this.id = id;
+        this.UserName = UserName;
+        this.MatKhau = MatKhau;
+        this.Ten_NV = Ten_NV;
+        this.NgaySinh = NgaySinh;
+        this.SDT = SDT;
+        this.Email = Email;
+        this.ChucVu = ChucVu;
+        this.TT = TT;
+    }
+
+    public NhanVien(String UserName, String MatKhau, String Ten_NV, Date NgaySinh, String SDT, String Email, boolean ChucVu, boolean TT) {
+        this.UserName = UserName;
+        this.MatKhau = MatKhau;
+        this.Ten_NV = Ten_NV;
+        this.NgaySinh = NgaySinh;
+        this.SDT = SDT;
+        this.Email = Email;
+        this.ChucVu = ChucVu;
+        this.TT = TT;
+    }
+    
+
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        MatKhau = matKhau;
     }
 
     public String getTen_NV() {
@@ -58,55 +114,12 @@ public class NhanVien implements Serializable {
         Ten_NV = ten_NV;
     }
 
-    public NhanVien(String userName, String matKhau, String ten_NV, Date ngaySinh, String SDT, String email, String chucVu) {
-        UserName = userName;
-        MatKhau = matKhau;
-        Ten_NV = ten_NV;
-        NgaySinh = ngaySinh;
-        this.SDT = SDT;
-        Email = email;
-        ChucVu = chucVu;
-    }
-
-    public NhanVien(long Id, String UserName, String MatKhau, String Ten_NV, Date NgaySinh, String SDT, String Email, String ChucVu) {
-        this.id = Id;
-        this.UserName = UserName;
-        this.MatKhau = MatKhau;
-        this.Ten_NV = Ten_NV;
-        this.NgaySinh = NgaySinh;
-        this.SDT = SDT;
-        this.Email = Email;
-        this.ChucVu = ChucVu;
-    }
-
-    public void setId(long Id) {
-        this.id = Id;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
-    }
-
-    public String getMatKhau() {
-        return MatKhau;
-    }
-
-    public void setMatKhau(String MatKhau) {
-        this.MatKhau = MatKhau;
-    }
-
-
-
     public Date getNgaySinh() {
         return NgaySinh;
     }
 
-    public void setNgaySinh(Date NgaySinh) {
-        this.NgaySinh = NgaySinh;
+    public void setNgaySinh(Date ngaySinh) {
+        NgaySinh = ngaySinh;
     }
 
     public String getSDT() {
@@ -121,16 +134,25 @@ public class NhanVien implements Serializable {
         return Email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        Email = email;
     }
 
-    public String getChucVu() {
+    public boolean isChucVu() {
         return ChucVu;
     }
 
-    public void setChucVu(String ChucVu) {
+    public void setChucVu(boolean ChucVu) {
         this.ChucVu = ChucVu;
     }
 
+    public boolean isTT() {
+        return TT;
+    }
+
+    public void setTT(boolean TT) {
+        this.TT = TT;
+    }
+
+    
 }

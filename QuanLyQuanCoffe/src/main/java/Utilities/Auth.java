@@ -29,7 +29,7 @@ public class Auth {
     }
     public static boolean isManager(){
         if(isLogin()){
-            return user.getChucVu().equals("QuanLy");
+            return user.isChucVu();
         }
     return false;
     }

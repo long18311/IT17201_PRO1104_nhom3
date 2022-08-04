@@ -4,6 +4,7 @@
  */
 package Views;
 
+import Models.KhachHang;
 import Models.SanPham;
 import Services.ISanPhamService;
 import Services.SanPhamService;
@@ -66,10 +67,8 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         txtten = new javax.swing.JTextField();
         txtgia = new javax.swing.JTextField();
-        txtsoluong = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -78,6 +77,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         tblSanPham = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtmota = new javax.swing.JTextArea();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,22 +94,12 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("mô tả:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setText("số lượng:");
-
         txtten.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtgia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtgia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 txtgiaMouseExited(evt);
-            }
-        });
-
-        txtsoluong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtsoluong.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtsoluongMouseExited(evt);
             }
         });
 
@@ -154,7 +144,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "tên", "giá", "mô tả", "số lượng"
+                "tên", "giá", "mô tả"
             }
         ));
         tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,6 +159,15 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         txtmota.setRows(5);
         jScrollPane2.setViewportView(txtmota);
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton5.setText("lịch sử SP");
+        jButton5.setToolTipText("");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,23 +178,26 @@ public class SanPhamJDialog extends javax.swing.JDialog {
                         .addGap(262, 262, 262)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtgia)
-                            .addComponent(txtten)
-                            .addComponent(txtsoluong)
-                            .addComponent(jScrollPane2))
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtgia)
+                                    .addComponent(txtten)
+                                    .addComponent(jScrollPane2))
+                                .addGap(90, 90, 90)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,11 +219,7 @@ public class SanPhamJDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txtgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtsoluong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                            .addComponent(txtgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
@@ -231,6 +229,8 @@ public class SanPhamJDialog extends javax.swing.JDialog {
                             .addComponent(jButton2)
                             .addComponent(jButton4))))
                 .addGap(18, 18, 18)
+                .addComponent(jButton5)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,16 +242,20 @@ public class SanPhamJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public SanPham getSanPhamtxt(){
-        return new SanPham(txtten.getText(), Integer.parseInt(txtgia.getText()), txtmota.getText(), Integer.parseInt(txtsoluong.getText()));
+        return new SanPham(txtten.getText(), Integer.parseInt(txtgia.getText()), txtmota.getText(),true);
     }
     public void loadTableSanPham(){
+        List<SanPham> sanPham = new ArrayList<>();
         sanPhams = new ArrayList<>();
-        sanPhams = sanPhamService.getList();
+        sanPham = sanPhamService.getList();
         _Model = new DefaultTableModel();
         _Model = (DefaultTableModel) tblSanPham.getModel();
         _Model.setRowCount(0);
-        for (int i = 0; i < sanPhams.size(); i++) {
-            _Model.addRow(new Object[]{sanPhams.get(i).getTen(), sanPhams.get(i).getGiaBan(),sanPhams.get(i).getMoTa(),sanPhams.get(i).getSoLuong()});
+        for (int i = 0; i < sanPham.size(); i++) {
+            if(sanPham.get(i).isTT()){
+                sanPhams.add(sanPham.get(i));
+                _Model.addRow(new Object[]{sanPham.get(i).getTen(), sanPham.get(i).getGiaBan(),sanPham.get(i).getMoTa()});
+            }
         }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -281,7 +285,9 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         if(idSanPham == -1){
             return;
         }
-        if(sanPhamService.delete(sanPhamService.getById(idSanPham)) == true){
+        SanPham nhanVien = sanPhamService.getById(idSanPham);
+        nhanVien.setTT(false);
+        if(sanPhamService.update(nhanVien) == true){
             JOptionPane.showMessageDialog(this,"xóa Thành công");
             loadTableSanPham();
             return;
@@ -292,7 +298,6 @@ public class SanPhamJDialog extends javax.swing.JDialog {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         idSanPham = -1;
         txtten.setText("");
-        txtsoluong.setText("");
         txtgia.setText("");
         txtmota.setText("");
         jButton1.setEnabled(true);
@@ -307,7 +312,6 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         txtten.setText(sanPhams.get(rowIndex).getTen());
         txtgia.setText(String.valueOf(sanPhams.get(rowIndex).getGiaBan()));
         txtmota.setText(sanPhams.get(rowIndex).getMoTa());
-        txtsoluong.setText(String.valueOf(sanPhams.get(rowIndex).getSoLuong()));
         jButton1.setEnabled(false);
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
@@ -324,16 +328,10 @@ public class SanPhamJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtgiaMouseExited
 
-    private void txtsoluongMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtsoluongMouseExited
-        if(txtsoluong.getText().isBlank()) {
-        return;
-        }
-        try{
-            Integer.parseInt(txtsoluong.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this," số lượng chỉ đc nhập số");
-        }
-    }//GEN-LAST:event_txtsoluongMouseExited
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         new LichSuSPJDialog(new javax.swing.JFrame(), true).setVisible(true);
+         loadTableSanPham();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,17 +380,16 @@ public class SanPhamJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtgia;
     private javax.swing.JTextArea txtmota;
-    private javax.swing.JTextField txtsoluong;
     private javax.swing.JTextField txtten;
     // End of variables declaration//GEN-END:variables
 }

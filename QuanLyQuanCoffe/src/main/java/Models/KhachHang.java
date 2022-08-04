@@ -13,25 +13,33 @@ import java.io.Serializable;
  * @author vanlo
  */
 @Entity
-@Table (name = "khachhang")
+@Table(name = "KhachHang")
 public class KhachHang implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdKhachHang")
+    @Column(name = "id")
     private long id;
     @Column(name = "TenKH")
     private String TenKH;
-    @Column(name = "SoDienThoai")
+    @Column(name = "SDT")
     private String SDT;
-    @OneToMany
-    @JoinTable(name = "khachHang")
+    @Column(name = "TT")
+    private boolean TT;
+    @OneToMany(mappedBy = "khachHang")    
     private List<HoaDon> hoadons;
 
-    public KhachHang(long Id, String TenKH, String SDT, List<HoaDon> hoadons) {
-        this.id = Id;
-        this.TenKH = TenKH;
+    public boolean isTT() {
+        return TT;
+    }
+
+    public void setTT(boolean TT) {
+        this.TT = TT;
+    }
+
+    public KhachHang(long id, String tenKH, String SDT) {
+        this.id = id;
+        TenKH = tenKH;
         this.SDT = SDT;
-        this.hoadons = hoadons;
     }
 
     public KhachHang(String tenKH, String SDT) {
@@ -39,20 +47,20 @@ public class KhachHang implements Serializable{
         this.SDT = SDT;
     }
 
-    public List<HoaDon> getHoadons() {
-        return hoadons;
-    }
-
-    public void setHoadons(List<HoaDon> hoadons) {
-        this.hoadons = hoadons;
-    }
-    public KhachHang() {
-    }
-
-    public KhachHang(long id, String tenKH, String SDT) {
-        id = id;
-        TenKH = tenKH;
+    public KhachHang(String TenKH, String SDT, boolean TT) {
+        this.TenKH = TenKH;
         this.SDT = SDT;
+        this.TT = TT;
+    }
+
+    public KhachHang(long id, String TenKH, String SDT, boolean TT) {
+        this.id = id;
+        this.TenKH = TenKH;
+        this.SDT = SDT;
+        this.TT = TT;
+    }
+
+    public KhachHang() {
     }
 
     public long getId() {
@@ -60,7 +68,7 @@ public class KhachHang implements Serializable{
     }
 
     public void setId(long id) {
-        id = id;
+        this.id = id;
     }
 
     public String getTenKH() {
@@ -77,5 +85,13 @@ public class KhachHang implements Serializable{
 
     public void setSDT(String SDT) {
         this.SDT = SDT;
+    }
+
+    public List<HoaDon> getHoadons() {
+        return hoadons;
+    }
+
+    public void setHoadons(List<HoaDon> hoadons) {
+        this.hoadons = hoadons;
     }
 }

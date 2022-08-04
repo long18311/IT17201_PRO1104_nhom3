@@ -21,13 +21,8 @@ import Services.SanPhamService;
 
 public class vui {
 //    static KhachHangReposittory NV = new KhachHangReposittory();
+
     public static void main(String[] args) {
-        KhachHangReposittory NV = new KhachHangReposittory();
-        List<KhachHang> NVs = NV.getList();
-        System.out.println("vui");
-        System.out.println(NVs.size());
-        for (KhachHang nv : NVs) {
-            System.out.println(nv.getId());
-        }
+
     }
 }
