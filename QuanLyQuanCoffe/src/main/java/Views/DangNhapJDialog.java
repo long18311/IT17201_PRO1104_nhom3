@@ -141,8 +141,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int a = -1;
+        nhanviens.clear();
+        nhanviens = new ArrayList<>();
+        nhanviens = nhanVienService.getList();
         for(int i= 0;i <= nhanviens.size();i++){
-            if(nhanviens.get(i).getUserName().equals(txtUser.getText())){
+            if(nhanviens.get(i).getUserName().equals(txtUser.getText())&&nhanviens.get(i).isTT()){
                 a = i;
                 break; 
             }

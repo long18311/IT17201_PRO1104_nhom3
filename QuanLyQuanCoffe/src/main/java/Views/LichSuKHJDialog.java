@@ -35,7 +35,7 @@ public class LichSuKHJDialog extends javax.swing.JDialog {
     }
     public void init(){
         setLocationRelativeTo(null);
-        setTitle("Quản lí Khách hàng");
+        setTitle("Khách hàng đã xóa");
     }
     public void loadTableNhanVien(){
         List<KhachHang> khachHang = new ArrayList<>();

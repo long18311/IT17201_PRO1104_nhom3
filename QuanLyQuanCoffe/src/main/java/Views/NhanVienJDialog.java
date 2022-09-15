@@ -394,18 +394,24 @@ public class NhanVienJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         // TODO add your handling code here:
         NhanVien nhanVien = getNhanVientxt();
+        nhanViens.clear();
+        nhanViens = new ArrayList<>();
+        nhanViens = nhanVienService.getList();
+        for(int i = 0; i< nhanViens.size();i++){
+            if(nhanViens.get(i).getUserName().equals(nhanVien.getUserName())){
+                 JOptionPane.showMessageDialog(this,"trùng UserName");
+                 return;
+            }
+        }
         if(nhanVienService.save(nhanVien) == true){
             JOptionPane.showMessageDialog(this,"Thêm Thành công");
             loadTableNhanVien();
             return;
         }
         JOptionPane.showMessageDialog(this,"Thêm Thất bại");
-
-
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

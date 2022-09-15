@@ -10,6 +10,7 @@ import Services.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -296,6 +297,7 @@ public class ThanhtoanJDialog extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc muốn Thanh toán Hóa Đơn này ko?", "Thanh toán", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             hoaDon.setTinhTrangHD(true);
+            hoaDon.setNgayTT(new Date());
             if (hoaDonService.update(hoaDon) == true) {
                 JOptionPane.showMessageDialog(this, "Thanh toán Hóa Đơn Thành công");
                 hoaDon = new HoaDon();

@@ -6,6 +6,7 @@ package Views;
 
 import Models.NhanVien;
 import Services.INhanVienService;
+import Services.NhanVienService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,8 @@ public class NeLichSuNVJDialog extends javax.swing.JDialog {
     /**
      * Creates new form NeLichSuNVJDialog
      */
-     INhanVienService nhanVienService;
-    List<NhanVien> nhanViens;
+    INhanVienService nhanVienService = new NhanVienService();
+    List<NhanVien> nhanViens = new ArrayList<>();
     DefaultTableModel _Model;
     long idNhanVien;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -32,7 +33,7 @@ public class NeLichSuNVJDialog extends javax.swing.JDialog {
          jButton3.setEnabled(false);
          jButton4.setEnabled(false);
          setLocationRelativeTo(null);
-        setTitle("Quản lí Nhân Viên");
+        setTitle("Nhân Viên đã xóa");
         loadTableNhanVien();
     }
      public void loadTableNhanVien(){

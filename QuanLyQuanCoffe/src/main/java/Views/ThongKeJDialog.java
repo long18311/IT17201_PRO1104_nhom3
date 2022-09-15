@@ -68,7 +68,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
             hoaDonCTs = new ArrayList<>();
             hoaDonCTs = hoaDonCTService.getList(hoaDons.get(i));
             for (int j = 0; j < hoaDonCTs.size(); j++) {
-                a = a + hoaDonCTs.get(j).getGiaLM();
+                a = a + hoaDonCTs.get(j).getGiaLM()*hoaDonCTs.get(j).getSoLuong();
             }
             _Model.addRow(new Object[]{hoaDons.get(i).getKhachHang().getTenKH(), "Đã thanh toán", new SimpleDateFormat("dd/MM/yyyy").format(hoaDons.get(i).getNgayTT()), hoaDons.get(i).getTTGiamGia(), a - hoaDons.get(i).getTTGiamGia()});
 
@@ -132,7 +132,7 @@ public class ThongKeJDialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Khách Hàng", "Tình trang", "Ngày tạo HÐ", "tiền giảm giá", "tiền thanh toán"
+                "Khách Hàng", "Tình trang", "Ngày thanh toán", "tiền giảm giá", "tiền thanh toán"
             }
         ));
         tbl_Donhang.addMouseListener(new java.awt.event.MouseAdapter() {

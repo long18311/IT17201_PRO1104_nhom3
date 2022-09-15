@@ -125,6 +125,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txtSDT = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -421,6 +422,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addGap(0, 84, Short.MAX_VALUE))
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Khách hàng"));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Tên khách hàng:");
 
@@ -445,6 +448,15 @@ public class BanHangJDialog extends javax.swing.JDialog {
             }
         });
 
+        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton9.setText("Lịch sử xóa khách hàng");
+        jButton9.setToolTipText("");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -452,6 +464,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton7)
+                .addGap(74, 74, 74)
+                .addComponent(jButton9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -471,7 +485,9 @@ public class BanHangJDialog extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton9))
                 .addGap(31, 31, 31))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -494,7 +510,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -506,7 +522,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(363, 363, 363)
                         .addComponent(jLabel1)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,13 +550,17 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public void loadTableSanPham() {
+        sanPhams.clear();
         sanPhams = new ArrayList<>();
-        sanPhams = sanPhamService.getList();
+        List<SanPham> sanPhamlist = new ArrayList<>();
+
+        sanPhamlist = sanPhamService.getList();
         _Model = new DefaultTableModel();
         _Model = (DefaultTableModel) tbl_SanPham.getModel();
         _Model.setRowCount(0);
-        for (int i = 0; i < sanPhams.size(); i++) {
-            _Model.addRow(new Object[]{sanPhams.get(i).getTen(), sanPhams.get(i).getGiaBan(), sanPhams.get(i).getMoTa()});
+        for (int i = 0; i < sanPhamlist.size(); i++) {
+            sanPhams.add(sanPhamlist.get(i));
+            _Model.addRow(new Object[]{sanPhamlist.get(i).getTen(), sanPhamlist.get(i).getGiaBan(), sanPhamlist.get(i).getMoTa()});
         }
     }
 
@@ -652,10 +672,10 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (hoaDonCTs.size() != 0) {
             for (int i = 0; i < hoaDonCTs.size(); i++) {
                 if (hoaDonCTs.get(i).getSanPham().getId() == getHDCTtxt().getSanPham().getId()) {
-//                    HoaDonCT hoaDonCT = getHDCTtxt();
-//                    hoaDonCT.setSoLuong(getHDCTtxt().getSoLuong()+hoaDonCTs.get(i).getSoLuong());
-//                    hoaDonCTs.set(i,hoaDonCT);
-//                    loadTablehoaDonCT(hoaDonCTs);
+                    HoaDonCT hoaDonCT = getHDCTtxt();
+                    hoaDonCT.setSoLuong(getHDCTtxt().getSoLuong()+hoaDonCTs.get(i).getSoLuong());
+                    hoaDonCTs.set(i,hoaDonCT);
+                    loadTablehoaDonCT(hoaDonCTs);
                     JOptionPane.showMessageDialog(this, "Đã có sản Phầm này");
                     return;
                 }
@@ -775,7 +795,6 @@ public class BanHangJDialog extends javax.swing.JDialog {
         hoaDonCTs = new ArrayList<>();
         System.out.println(idHD);
         hoaDonCTs = hoaDonCTService.getList(hoaDonService.getById(idHD));
-        
         loadComboBoxkhachHangs();
         loadTableSanPham();
         loadTablehoaDonCT(hoaDonCTs);
@@ -788,6 +807,13 @@ public class BanHangJDialog extends javax.swing.JDialog {
     private void txtTien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTien1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTien1ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        new LichSuKHJDialog(new javax.swing.JFrame(), true).setVisible(true);
+       if (kh) {
+                loadComboBoxkhachHangs();
+            }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -845,6 +871,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
